@@ -1,0 +1,14 @@
+C:\Users\artur\OneDrive\Рабочий стол\ITIS\Шарпы Кислов\Hanoi\HanoiAlgorythm\bin\Release\net6.0\HanoiAlgorithm.exe
+C:\Users\artur\OneDrive\Рабочий стол\ITIS\Шарпы Кислов\Hanoi\HanoiAlgorythm\bin\Release\net6.0\HanoiAlgorithm.deps.json
+C:\Users\artur\OneDrive\Рабочий стол\ITIS\Шарпы Кислов\Hanoi\HanoiAlgorythm\bin\Release\net6.0\HanoiAlgorithm.runtimeconfig.json
+C:\Users\artur\OneDrive\Рабочий стол\ITIS\Шарпы Кислов\Hanoi\HanoiAlgorythm\bin\Release\net6.0\HanoiAlgorithm.dll
+C:\Users\artur\OneDrive\Рабочий стол\ITIS\Шарпы Кислов\Hanoi\HanoiAlgorythm\bin\Release\net6.0\HanoiAlgorithm.pdb
+C:\Users\artur\OneDrive\Рабочий стол\ITIS\Шарпы Кислов\Hanoi\HanoiAlgorythm\obj\Release\net6.0\HanoiAlgorithm.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\artur\OneDrive\Рабочий стол\ITIS\Шарпы Кислов\Hanoi\HanoiAlgorythm\obj\Release\net6.0\HanoiAlgorithm.AssemblyInfoInputs.cache
+C:\Users\artur\OneDrive\Рабочий стол\ITIS\Шарпы Кислов\Hanoi\HanoiAlgorythm\obj\Release\net6.0\HanoiAlgorithm.AssemblyInfo.cs
+C:\Users\artur\OneDrive\Рабочий стол\ITIS\Шарпы Кислов\Hanoi\HanoiAlgorythm\obj\Release\net6.0\HanoiAlgorithm.csproj.CoreCompileInputs.cache
+C:\Users\artur\OneDrive\Рабочий стол\ITIS\Шарпы Кислов\Hanoi\HanoiAlgorythm\obj\Release\net6.0\HanoiAlgorithm.dll
+C:\Users\artur\OneDrive\Рабочий стол\ITIS\Шарпы Кислов\Hanoi\HanoiAlgorythm\obj\Release\net6.0\refint\HanoiAlgorithm.dll
+C:\Users\artur\OneDrive\Рабочий стол\ITIS\Шарпы Кислов\Hanoi\HanoiAlgorythm\obj\Release\net6.0\HanoiAlgorithm.pdb
+C:\Users\artur\OneDrive\Рабочий стол\ITIS\Шарпы Кислов\Hanoi\HanoiAlgorythm\obj\Release\net6.0\HanoiAlgorithm.genruntimeconfig.cache
+C:\Users\artur\OneDrive\Рабочий стол\ITIS\Шарпы Кислов\Hanoi\HanoiAlgorythm\obj\Release\net6.0\ref\HanoiAlgorithm.dll
