@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net481</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>11</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\artur\.nuget\packages\opencvsharp4.runtime.win\4.8.0.20230708\build\net48\..\..\runtimes\win-x64\native\OpenCvSharpExtern.dll" />
+    <Content Remove="C:\Users\artur\.nuget\packages\opencvsharp4.runtime.win\4.8.0.20230708\build\net48\..\..\runtimes\win-x64\native\opencv_videoio_ffmpeg480_64.dll" />
+    <Content Remove="C:\Users\artur\.nuget\packages\opencvsharp4.runtime.win\4.8.0.20230708\build\net48\..\..\runtimes\win-x86\native\OpenCvSharpExtern.dll" />
+    <Content Remove="C:\Users\artur\.nuget\packages\opencvsharp4.runtime.win\4.8.0.20230708\build\net48\..\..\runtimes\win-x86\native\opencv_videoio_ffmpeg480.dll" />
+  </ItemGroup>
+
+</Project>
