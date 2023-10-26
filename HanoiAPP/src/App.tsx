@@ -1,6 +1,8 @@
 import {HashRouter, Route, Routes} from "react-router-dom";
 import './App.css'
+// @ts-ignore
 import MainMenu from "./screens/MainMenu.tsx";
+// @ts-ignore
 import AlgorithmScreen from "./screens/AlgorithmScreen.tsx";
 
 

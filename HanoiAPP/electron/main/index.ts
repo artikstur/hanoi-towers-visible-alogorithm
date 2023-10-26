@@ -3,6 +3,8 @@ import { release } from 'node:os'
 import { join } from 'node:path'
 import { update } from './update'
 import edge from "electron-edge-js";
+import * as fs from "fs";
+import {makeArray} from "./utils/makeArray";
 const path = require('path');
 
 // The built directory structure
@@ -16,7 +18,8 @@ const path = require('path');
 // │ └── index.html    > Electron-Renderer
 //
 const currentDir = __dirname;
-const hanoiAlgorithm =  path.join(currentDir, '..', '..', 'resources', 'HanoiAlgorithm.dll');
+const hanoiAlgorithm =  path.join(currentDir, '..', '..', 'resources', 'Test.dll');
+
 
 
 process.env.DIST_ELECTRON = join(__dirname, '../')
@@ -74,21 +77,23 @@ async function createWindow() {
     win?.webContents.send('main-process-message', new Date().toLocaleString())
   })
 
-  const SolveHanoiTower = edge.func({
-    assemblyFile: hanoiAlgorithm,
-    typeName: 'HanoiAlgorithm.Algorithm',
-    methodName: 'SolveHanoiTower',
-  });
+  // const assemblyFile =  path.join(currentDir, '..', '..', 'resources', 'TirAPP.dll');
+  //
+  // const myCSharpCode = edge.func({
+  //   assemblyFile,
+  //   typeName: 'Program.Program',
+  //   methodName: 'SolveHanoiTower',
+  // });
+  //
+  // myCSharpCode(3, (error, result) => {
+  //   if (error) {
+  //     console.error(error);
+  //   } else {
+  //     console.log(result);
+  //   }
+  // });
 
-  SolveHanoiTower(3, (error, result) => {
-    if (error) {
-      console.error('Ошибка:', error);
-    } else {
-      console.log('Результат SolveHanoiTower:', result);
-    }
-  });
-
-  // Make all links open with the browser, not with the application
+      // Make all links open with the browser, not with the application
   win.webContents.setWindowOpenHandler(({ url }) => {
     if (url.startsWith('https:')) shell.openExternal(url)
     return { action: 'deny' }
@@ -137,5 +142,25 @@ ipcMain.handle('open-win', (_, arg) => {
   } else {
     childWindow.loadFile(indexHtml, { hash: arg })
   }
+})
+
+ipcMain.handle('send-rings', (_, countOfRings) => {
+  const assemblyFile =  path.join(currentDir, '..', '..', 'resources', 'TirAPP.dll');
+
+  const myCSharpCode = edge.func({
+    assemblyFile,
+    typeName: 'Program.Program',
+    methodName: 'SolveHanoiTower',
+  });
+
+  let data: string[] = [];
+
+  myCSharpCode(countOfRings, (_, result) => {
+    data = result as string[];
+  });
+
+  const rings = data;
+
+  return makeArray(rings, countOfRings)
 })
 

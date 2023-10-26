@@ -1,22 +1,112 @@
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import styled from "styled-components";
+import {useEffect, useState} from "react";
+import {observer} from "mobx-react-lite";
+import {ipcRenderer} from "electron";
+import hanoiSolverStore from "@/api/store/hanoi-solver.store";
 
-const AlgorithmScreen = () => {
+const config = [
+    {
+        width: 80,
+        color: 'red',
+    },
+    {
+        width: 90,
+        color: 'orange',
+    },
+    {
+        width: 100,
+        color: 'yellow',
+    },
+    {
+        width: 110,
+        color: 'green'
+    },
+    {
+        width: 120,
+        color: 'blue'
+    },
+    {
+        width: 130,
+        color: 'indigo'
+    },
+    {
+        width: 140,
+        color: 'violet'
+    },
+];
 
-    const ringsData = [
-        {rings: [1, 2, 3]}, // Красный, Оранжевый, Желтый
-        {rings: [4, 5]},    // Зеленый, Синий
-        {rings: [6, 7]},    // Индиго, Фиолетовый
-    ];
+const AlgorithmScreen = observer(() => {
+    const [activeIdx, setActiveIdx] = useState<number>(0)
+    const [rings, setRings] = useState<number[][][] | null>(null)
+    const location = useLocation();
+    const numberOfRings = location.state.mode
+
+    const fetch = async () => {
+        const data = await ipcRenderer.invoke('send-rings', numberOfRings)
+        setRings(data)
+    }
+
+    useEffect(() => {
+        fetch().catch(() => {
+        })
+    }, [])
+
+    useEffect(() => {
+        if (!rings) return;
+
+        const interval = setInterval(() => {
+            setActiveIdx((prevIndex) => {
+                const nextIndex = (prevIndex + 1);
+                if (nextIndex === rings.length - 1) {
+                    clearInterval(interval); // Останавливаем интервал при достижении максимального значения
+                }
+                return nextIndex;
+            });
+        }, 500); // Обновление каждые 0.5 секунды
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [rings]);
 
 
-    const getColorByNumber = (number: number) => {
-        const rainbowColors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+    const getConfigByNumber = (number: number) => {
+        const config = [
+            {
+                width: 80,
+                color: 'red',
+            },
+            {
+                width: 90,
+                color: 'orange',
+            },
+            {
+                width: 100,
+                color: 'yellow',
+            },
+            {
+                width: 110,
+                color: 'green'
+            },
+            {
+                width: 120,
+                color: 'blue'
+            },
+            {
+                width: 130,
+                color: 'indigo'
+            },
+            {
+                width: 140,
+                color: 'violet'
+            },
+        ];
         if (number === 0) {
             return 'transparent';
         }
-        const index = (number - 1) % rainbowColors.length;
-        return rainbowColors[index];
+        const index = (number - 1) % config.length;
+        return config[index];
     };
 
     const navigate = useNavigate()
@@ -25,14 +115,15 @@ const AlgorithmScreen = () => {
         <Wrapper>
             <GameWrapper>
                 <Container>
-                    {ringsData.map((rodData, index) => (
+                    {rings && rings[activeIdx].map((rodData, index) => (
                         <RodContainer key={index}>
                             <Rod>
-                                {rodData.rings.map((ringNumber, ringIndex) => (
+                                {rodData.map((ringNumber, ringIndex) => (
                                     <Ring
                                         key={ringIndex}
-                                        color={getColorByNumber(ringNumber)}
-                                        position={ringIndex * 20} // Установите желаемый интервал между кольцами
+                                        color={ringNumber === 0 ? 'transparent' : config[(ringNumber - 1) % config.length].color}
+                                        position={ringIndex * 20}
+                                        $width={ringNumber === 0 ? 0 : config[(ringNumber - 1) % config.length].width}
                                     />
                                 ))}
                             </Rod>
@@ -46,7 +137,7 @@ const AlgorithmScreen = () => {
             </button>
         </Wrapper>
     );
-};
+});
 
 const Wrapper = styled.div`
   padding: 30px;
@@ -104,10 +195,10 @@ const RodLabel = styled.div`
   font-size: 30px;
 `;
 
-const Ring = styled.div<{ position: number }>`
-  width: 100px;
+const Ring = styled.div<{ position: number; $width: number }>`
+  width: ${({ $width }) => `${$width}px`};
   height: 30px;
-  right: -45px;
+  right: ${({ $width }) => `${-45 + 5 * (100 - $width) / 10}px`};
   background-color: ${props => props.color};
   border-radius: 50%;
   position: absolute;

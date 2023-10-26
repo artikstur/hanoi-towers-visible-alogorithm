@@ -1,18 +1,29 @@
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+// @ts-ignore
 import {dropdownArrow} from "../assets/img/images.ts";
+import hanoiSolverStore from "@/api/store/hanoi-solver.store";
+import {observer} from "mobx-react-lite";
 
-const MainMenu = () => {
+const MainMenu = observer(() => {
     const navigate = useNavigate()
     const [selectedItem, setSelectedItem] = useState(3);
     const [isOpen, setIsOpen] = useState(false);
+    const registerHandle = (path: string) => {
+        navigate(path, {
+            state: {
+                mode: selectedItem
+            }
+        });
+    }
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
 
     const handleMenuItemClick = (item: number) => {
         setSelectedItem(item);
+        // hanoiSolverStore.setCountOfRings(item)
         setIsOpen(false);
     };
 
@@ -33,12 +44,12 @@ const MainMenu = () => {
                     <DropdownMenuItem onClick={() => handleMenuItemClick(7)}>7</DropdownMenuItem>
                 </DropdownMenu>
             </Dropdown>
-            <ContinueBtn onClick={() => navigate('/algorithm')}>
+            <ContinueBtn onClick={() => registerHandle('/algorithm')}>
                 Поехали!!!
             </ContinueBtn>
         </Wrapper>
     );
-};
+});
 
 const Wrapper = styled.div`
   background-color: #1da9ad;
