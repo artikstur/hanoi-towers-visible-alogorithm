@@ -21,7 +21,7 @@ namespace Program
             // Количество перемещений
             int nums = (int)Math.Pow(2, discAmount) - 1;
 
-            // Массив, содержащий строки, в которых известно, какой диск с какого стержня и на какой стержень был перемещён
+            // Массив, содержащий строки, в которых известно, какой диск / с какого стержня / на какой стержень был перемещён
             string[] array = new string[nums];
 
             HanoiSolver(discAmount, startStick, middleStick, finishStick, ref array, ref activeIdx);

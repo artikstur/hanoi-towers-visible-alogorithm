@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 // @ts-ignore
 import {dropdownArrow} from "../assets/img/images.ts";
-import hanoiSolverStore from "@/api/store/hanoi-solver.store";
 import {observer} from "mobx-react-lite";
 
 const MainMenu = observer(() => {
@@ -23,7 +22,6 @@ const MainMenu = observer(() => {
 
     const handleMenuItemClick = (item: number) => {
         setSelectedItem(item);
-        // hanoiSolverStore.setCountOfRings(item)
         setIsOpen(false);
     };
 
@@ -42,6 +40,7 @@ const MainMenu = observer(() => {
                     <DropdownMenuItem onClick={() => handleMenuItemClick(5)}>5</DropdownMenuItem>
                     <DropdownMenuItem onClick={() => handleMenuItemClick(6)}>6</DropdownMenuItem>
                     <DropdownMenuItem onClick={() => handleMenuItemClick(7)}>7</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleMenuItemClick(8)}>8</DropdownMenuItem>
                 </DropdownMenu>
             </Dropdown>
             <ContinueBtn onClick={() => registerHandle('/algorithm')}>
@@ -55,8 +54,9 @@ const Wrapper = styled.div`
   background-color: #1da9ad;
   height: 100%;
   width: 100%;
-  font-size: 20px;
-
+  font-size: 23px;
+  color: white;
+  
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -112,12 +112,24 @@ const DropDownImg = styled.div<{$isOpen: boolean}>`
 const DropdownMenu = styled.ul<{ isOpen: boolean }>`
   width: 100px;
   max-height: ${({isOpen}) => (isOpen ? '250px' : '0')};
-  overflow: hidden;
+  overflow: auto;
   transition: max-height 0.5s ease-in-out;
   background-color: #ffffff;
   padding: 0;
   margin: 0;
   list-style: none;
+  
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #D9D9D9;
+    border-radius: 8px;
+  }
+  
 `;
 
 const DropdownMenuItem = styled.li`

@@ -18,9 +18,11 @@ release
 
 # Editor directories and files
 .vscode/.debug.env
+.vs
 .idea
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sw?
+*.vs

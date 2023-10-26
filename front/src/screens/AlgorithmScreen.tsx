@@ -34,6 +34,10 @@ const config = [
         width: 140,
         color: 'violet'
     },
+    {
+        width: 150,
+        color: 'black'
+    },
 ];
 
 const AlgorithmScreen = observer(() => {
@@ -70,44 +74,6 @@ const AlgorithmScreen = observer(() => {
         };
     }, [rings]);
 
-
-    const getConfigByNumber = (number: number) => {
-        const config = [
-            {
-                width: 80,
-                color: 'red',
-            },
-            {
-                width: 90,
-                color: 'orange',
-            },
-            {
-                width: 100,
-                color: 'yellow',
-            },
-            {
-                width: 110,
-                color: 'green'
-            },
-            {
-                width: 120,
-                color: 'blue'
-            },
-            {
-                width: 130,
-                color: 'indigo'
-            },
-            {
-                width: 140,
-                color: 'violet'
-            },
-        ];
-        if (number === 0) {
-            return 'transparent';
-        }
-        const index = (number - 1) % config.length;
-        return config[index];
-    };
 
     const navigate = useNavigate()
 
