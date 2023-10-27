@@ -1,4 +1,4 @@
 # hanoi-towers-visible-alogorithm
-Hanoi towers algorithm realization using C# and electron+react front
+Visualization of the solution to the Towers of Hanoi puzzle
 
 The algorithm is written in C# and linked to the frontend using electron-edge-js. Frontend: React + ts
