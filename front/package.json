@@ -13,6 +13,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "build:win-port": "yarn build && electron-builder --x64 --win=portable -c electron-builder.json5",
     "build": "tsc && vite build && electron-builder",
     "preview": "vite preview",
     "pree2e": "vite build --mode=test",
@@ -32,7 +33,6 @@
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
     "electron": "^23.2.0",
-    "electron-builder": "^23.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.60.0",

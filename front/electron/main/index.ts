@@ -127,11 +127,15 @@ ipcMain.handle('open-win', (_, arg) => {
   }
 })
 
+let hanoiBackPath: string;
+if (process.env.NODE_ENV === 'development') hanoiBackPath = path.join(currentDir, '..', '..', 'resources', 'HanoiBack.dll');
+else hanoiBackPath = './resources/HanoiBack.dll'
+
+
 ipcMain.handle('send-rings', (_, countOfRings) => {
-  const assemblyFile =  path.join(currentDir, '..', '..', 'resources', 'HanoiBack.dll');
 
   const myCSharpCode = edge.func({
-    assemblyFile,
+    assemblyFile: hanoiBackPath,
     typeName: 'Program.Program',
     methodName: 'SolveHanoiTower',
   });
