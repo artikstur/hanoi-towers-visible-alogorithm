@@ -76,23 +76,6 @@ async function createWindow() {
   win.webContents.on('did-finish-load', () => {
     win?.webContents.send('main-process-message', new Date().toLocaleString())
   })
-
-  // const assemblyFile =  path.join(currentDir, '..', '..', 'resources', 'TirAPP.dll');
-  //
-  // const myCSharpCode = edge.func({
-  //   assemblyFile,
-  //   typeName: 'Program.Program',
-  //   methodName: 'SolveHanoiTower',
-  // });
-  //
-  // myCSharpCode(3, (error, result) => {
-  //   if (error) {
-  //     console.error(error);
-  //   } else {
-  //     console.log(result);
-  //   }
-  // });
-
       // Make all links open with the browser, not with the application
   win.webContents.setWindowOpenHandler(({ url }) => {
     if (url.startsWith('https:')) shell.openExternal(url)
@@ -145,7 +128,7 @@ ipcMain.handle('open-win', (_, arg) => {
 })
 
 ipcMain.handle('send-rings', (_, countOfRings) => {
-  const assemblyFile =  path.join(currentDir, '..', '..', 'resources', 'TirAPP.dll');
+  const assemblyFile =  path.join(currentDir, '..', '..', 'resources', 'HanoiBack.dll');
 
   const myCSharpCode = edge.func({
     assemblyFile,
